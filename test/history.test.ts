@@ -32,7 +32,7 @@ describe('GET /history/:user_id', () => {
     expect(res.body[0].content_id).toBe('bluey');
   });
 
-  it.only('should return 400 when invalid user_id', async () => {
+  it('should return 400 when invalid user_id', async () => {
     const res = await request(app).get('/history/%20');
     expect(res.status).toBe(400);
     expect(res.body.error).toBe('Invalid or missing user_id');
