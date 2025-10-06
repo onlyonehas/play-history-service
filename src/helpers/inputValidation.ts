@@ -14,7 +14,7 @@ export function validatePlayEventInput(
   device: string,
   timestamp: string,
   playback_duration: number,
-  res: Response
+  res: Response,
 ): boolean {
   if (!user_id || !content_id || !device || !timestamp || !playback_duration) {
     res.status(400).json({ error: 'Missing fields' });
@@ -22,4 +22,3 @@ export function validatePlayEventInput(
   }
   return true;
 }
-

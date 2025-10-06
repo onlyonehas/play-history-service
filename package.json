@@ -1,10 +1,10 @@
 {
   "name": "play-history-service",
-  "version": "1.0.0",
-  "description": "",
+  "type": "module",
+  "description": "Simplified Play History Service for a streaming platform",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node src/index.ts",
+    "dev": "ts-node src/server.ts",
     "test": "jest",
     "build": "tsc",
     "start": "node dist/index.js",
@@ -13,9 +13,6 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "prepare": "husky"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "lint-staged": {
     "src/**/*.ts": [
       "eslint --fix",
