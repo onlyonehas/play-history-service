@@ -2,6 +2,7 @@ import express from 'express';
 import { PlayEvent, PlayEventInput } from '../src/types/playEvents';
 import { events } from '../src/storage/events';
 import { isDuplicate } from './helpers/checkDuplicate';
+import { validateUserId } from './helpers/inputValidation';
 
 const app = express();
 app.use(express.json());
@@ -28,6 +29,23 @@ app.post('/play', (req, res) => {
   }
 });
 
+
+app.get('/history/:user_id', (req, res) => {
+  try {
+    const { user_id }: { user_id: PlayEventInput['user_id'] } = req.params;
+
+    if (!validateUserId(user_id, res)) return;
+
+    const history = events
+      .filter(existingEvent => existingEvent?.user_id === user_id)
+      .sort((eventA: PlayEvent, eventB: PlayEvent) => eventB.timestamp.getTime() - eventA.timestamp.getTime());
+
+    res.json(history);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 
 export default app;
