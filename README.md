@@ -12,6 +12,10 @@ This service is built with **TypeScript** and **Express.js**. It exposes RESTful
 - Express API layer (routes/controllers)
 - TypeScript models and types
 
+## Database Schema
+
+Database integration is not yet implemented. Play events are currently in-memory data.
+
 ## API Endpoints
 
 - `POST /play` - Ingest a new play event.
@@ -20,11 +24,7 @@ This service is built with **TypeScript** and **Express.js**. It exposes RESTful
 - GET `/most-watched?from=&to=` - Return the most watched content IDs
   in a given time range
 
-Refer to API documentation for details.
-
-## Database Schema
-
-Database integration is not yet implemented. Play events are currently in-memory data.
+Refer to [API documentation](./src/docs/API.md) for details.
 
 ## Testing
 
