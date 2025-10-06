@@ -3,15 +3,21 @@ import app from '../src/index';
 import { events } from '../src/storage/events';
 
 describe('GET /history/:user_id', () => {
-  beforeEach(() => { events.length = 0; });
+  beforeEach(() => {
+    events.length = 0;
+  });
 
   it('should return events for given user_id sorted', async () => {
     const now = new Date();
     const older = new Date(now.getTime() - 1000);
 
-    events.push(
-      { user_id: 'user1', content_id: 'panorama', device: 'web', timestamp: older, playback_duration: 100 },
-    );
+    events.push({
+      user_id: 'user1',
+      content_id: 'panorama',
+      device: 'web',
+      timestamp: older,
+      playback_duration: 100,
+    });
 
     const res = await request(app).get('/history/user1');
     expect(res.status).toBe(200);
@@ -23,8 +29,20 @@ describe('GET /history/:user_id', () => {
     const older = new Date(now.getTime() - 1000);
 
     events.push(
-      { user_id: 'user1', content_id: 'panorama', device: 'web', timestamp: older, playback_duration: 100 },
-      { user_id: 'user1', content_id: 'bluey', device: 'tv', timestamp: now, playback_duration: 200 }
+      {
+        user_id: 'user1',
+        content_id: 'panorama',
+        device: 'web',
+        timestamp: older,
+        playback_duration: 100,
+      },
+      {
+        user_id: 'user1',
+        content_id: 'bluey',
+        device: 'tv',
+        timestamp: now,
+        playback_duration: 200,
+      },
     );
 
     const res = await request(app).get('/history/user1');
@@ -40,7 +58,9 @@ describe('GET /history/:user_id', () => {
 
   it('should return 500 when unexpected error', async () => {
     const originalFilter = Array.prototype.filter;
-    Array.prototype.filter = () => { throw new Error('Unexpected'); };
+    Array.prototype.filter = () => {
+      throw new Error('Unexpected');
+    };
     const res = await request(app).get('/history/user1');
     expect(res.status).toBe(500);
     expect(res.body.error).toBe('Internal server error');

@@ -61,3 +61,28 @@ Get a user's play history (most recent first).
 
 - 400 Bad Request: `{ "error": "Invalid or missing user_id" }`
 - 500 Internal Server Error: `{ "error": "Internal server error" }`
+
+---
+
+## GET /most-watched?from=&to=
+
+Get the most watched content IDs in a given time range.
+
+**Query Parameters:**
+
+- `from` (ISO date string, optional)
+- `to` (ISO date string, optional)
+
+**Success Response:**
+
+- 200 OK
+
+```json
+["movie456", "movie123"]
+```
+
+**Error Responses:**
+
+- 400 Bad Request: `{ "error": "Invalid from timestamp format" }`
+- 400 Bad Request: `{ "error": "Invalid to timestamp format" }`
+- 500 Internal Server Error: `{ "error": "Internal server error" }`
