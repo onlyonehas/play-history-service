@@ -7,14 +7,16 @@ It provides APIs so other teams or services can access users viewing history dat
 
 This service is built with **TypeScript** and **Express.js**. It exposes RESTful APIs to track and retrieve user play history.
 
-**Main components:**
+**Key Technologies & Tools:**
 
-- Express API layer (routes/controllers)
-- TypeScript models and types
+- Express.js (API framework)
+- TypeScript (type-safe models and code)
+- ESLint (code linting)
+- Prettier (code formatting)
 
 ## Database Schema
 
-Database integration is not yet implemented. Play events are currently in-memory data.
+Current implementation uses an in-memory array for simplicity, but can easily be extended to use a persistent database (e.g., Postgres, DynamoDB, MongoDB) to ensure data durability.
 
 ## API Endpoints
 

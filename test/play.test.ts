@@ -7,6 +7,7 @@ import * as checkDuplicate from '../src/helpers/checkDuplicate';
 describe('POST /play', () => {
   beforeEach(() => {
     events.length = 0;
+    console.error = jest.fn();
   });
 
   it('should add a new play event', async () => {
@@ -57,6 +58,7 @@ describe('POST /play', () => {
     expect(res.status).toBe(400);
     expect(res.body.error).toBe('Invalid timestamp format');
   });
+
   it('should return 500 if an unexpected error occurs', async () => {
     const spy = jest
       .spyOn(checkDuplicate, 'isDuplicate')
